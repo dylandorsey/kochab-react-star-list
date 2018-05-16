@@ -5,9 +5,22 @@ class App extends Component {
     super(props);
 
     this.state = {
-      starList: ['Menkar', 'Kochab', 'Hadar'],
-    };
-  }
+      starList: [
+        {
+          name: 'Menkar',
+          diameter: 89,
+        },
+        {
+          name: 'Kochab',
+          diameter: 42,
+        },
+        {
+          name: 'Hadar',
+          diameter: 'who knows??',
+        },
+      ],
+    }
+  };
 
   render() {
     // let starListItemArray = [];
@@ -26,14 +39,14 @@ class App extends Component {
     //   return <li key={starName}>{starName}</li>;
     // });
 
-  // const starListItemArray = this.state.starList.map(starName => <li key={starName}>{starName}</li>);
+    // const starListItemArray = this.state.starList.map(starName => <li key={starName}>{starName}</li>);
 
-  const starListItemArray = this.state.starList.map(starName => <li key={starName}>{starName}</li>);
+    const starListItemArray = this.state.starList.map(star => <li key={star.name}>The star {star.name} is {star.diameter} suns in radius.</li>);
 
     return (
       <div className="App">
-        <p>Here's the list of stars</p>
-        <p>The first item in the array is: {this.state.starList[0]}</p>
+        {/* <p>Here's the list of stars</p>
+        <p>The first item in the array is: {this.state.starList[0]}</p> */}
         <ul>
           {starListItemArray}
         </ul>
