@@ -66,7 +66,7 @@ class App extends Component {
 
     // const starListItemArray = this.state.starList.map(starName => <li key={starName}>{starName}</li>);
 
-    const starListItemArray = this.state.starList.map(star => <li key={star.name}>The star {star.name} is {star.radius} suns in radius.</li>);
+
 
     return (
       <div className="App">
@@ -80,7 +80,7 @@ class App extends Component {
         </form>
         <br></br>
         <ul>
-          {starListItemArray}
+          {this.state.starList.map(star => <li key={star.name}>The star {star.name} is {star.radius} suns in radius.</li>)}
         </ul>
       </div>
     );
