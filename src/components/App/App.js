@@ -17,11 +17,18 @@ class App extends Component {
     //   starListItemArray.push(<li key={starName}>{starName}</li>);
     // }
 
-    const starListItemArray = this.state.starList.map(starName => {
-      const newStar = <li key={starName}>{starName}</li>;
-      return newStar;
-    });
+    // const starListItemArray = this.state.starList.map(starName => {
+    //   const newStar = <li key={starName}>{starName}</li>;
+    //   return newStar;
+    // });
 
+    // const starListItemArray = this.state.starList.map(starName => {
+    //   return <li key={starName}>{starName}</li>;
+    // });
+
+  // const starListItemArray = this.state.starList.map(starName => <li key={starName}>{starName}</li>);
+
+  const starListItemArray = this.state.starList.map(starName => <li key={starName}>{starName}</li>);
 
     return (
       <div className="App">
