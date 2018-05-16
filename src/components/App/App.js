@@ -27,7 +27,7 @@ class App extends Component {
       newStar: emptyStar,
     };
   }
-  handleNewStar = propertyName => event => {
+  handleChangeFor = propertyName => event => {
     console.log('input says: ', event.target.value);
     this.setState({
       newStar: {
@@ -73,14 +73,17 @@ class App extends Component {
         {/* <p>Here's the list of stars</p>
         <p>The first item in the array is: {this.state.starList[0]}</p> */}
         <form onSubmit={this.handleSubmit}>
-          New star name: <input value={this.state.newStar.name} onChange={this.handleNewStar('name')} placeholder="star name" />
+          New star name: <input value={this.state.newStar.name} onChange={this.handleChangeFor('name')} placeholder="star name" />
           <br></br>
-          New star radius (in Suns): <input value={this.state.newStar.radius} onChange={this.handleNewStar('radius')} placeholder="star radius" />
+          New star radius (in Suns): <input value={this.state.newStar.radius} onChange={this.handleChangeFor('radius')} placeholder="star radius" />
           <input type="submit" value="submit new star" />
         </form>
         <br></br>
         <ul>
-          {this.state.starList.map(star => <li key={star.name}>The star {star.name} is {star.radius} suns in radius.</li>)}
+          {this.state.starList.map(star => 
+          <li key={star.name}>
+          The star {star.name} 
+          is {star.radius} suns in radius.</li>)}
         </ul>
       </div>
     );
