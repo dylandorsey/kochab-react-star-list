@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 
+const emptyStar = {
+  name: '',
+  radius: '',
+};
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -8,19 +13,39 @@ class App extends Component {
       starList: [
         {
           name: 'Menkar',
-          diameter: 89,
+          radius: 89,
         },
         {
           name: 'Kochab',
-          diameter: 42,
+          radius: 42,
         },
         {
           name: 'Hadar',
-          diameter: 'who knows??',
+          radius: 'who knows??',
         },
       ],
+      newStar: emptyStar,
+    };
+  }
+  handleNewStar = propertyName => event => {
+    console.log('input says: ', event.target.value);
+    this.setState({
+      newStar: {
+        ...this.state.newStar,
+        [propertyName]: event.target.value,
+      }
     }
-  };
+    );
+  }
+
+  handleSubmit = event => {
+    event.preventDefault();
+    this.setState({
+      starList: [...this.state.starList, this.state.newStar],
+      newStar: emptyStar,
+    });
+    console.log(this.state);
+  }
 
   render() {
     // let starListItemArray = [];
@@ -41,12 +66,19 @@ class App extends Component {
 
     // const starListItemArray = this.state.starList.map(starName => <li key={starName}>{starName}</li>);
 
-    const starListItemArray = this.state.starList.map(star => <li key={star.name}>The star {star.name} is {star.diameter} suns in radius.</li>);
+    const starListItemArray = this.state.starList.map(star => <li key={star.name}>The star {star.name} is {star.radius} suns in radius.</li>);
 
     return (
       <div className="App">
         {/* <p>Here's the list of stars</p>
         <p>The first item in the array is: {this.state.starList[0]}</p> */}
+        <form onSubmit={this.handleSubmit}>
+          New star name: <input value={this.state.newStar.name} onChange={this.handleNewStar('name')} placeholder="star name" />
+          <br></br>
+          New star radius (in Suns): <input value={this.state.newStar.radius} onChange={this.handleNewStar('radius')} placeholder="star radius" />
+          <input type="submit" value="submit new star" />
+        </form>
+        <br></br>
         <ul>
           {starListItemArray}
         </ul>
