@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import Introduction from '../Introduction/introduction';
+import NewStar from '../../New Star/NewStar';
+import StarList from '../StarList/StarList'
+import NewStarForm from '../NewStarForm/NewStarForm';
 
 const emptyStar = {
   name: '',
@@ -27,6 +31,7 @@ class App extends Component {
       newStar: emptyStar,
     };
   }
+
   handleChangeFor = propertyName => event => {
     console.log('input says: ', event.target.value);
     this.setState({
@@ -48,43 +53,15 @@ class App extends Component {
   }
 
   render() {
-    // let starListItemArray = [];
-    // for loop here
-    // for (let i = 0; i < this.state.starList.length; i++) {
-    //   let starName = this.state.starList[i]
-    //   starListItemArray.push(<li key={starName}>{starName}</li>);
-    // }
-
-    // const starListItemArray = this.state.starList.map(starName => {
-    //   const newStar = <li key={starName}>{starName}</li>;
-    //   return newStar;
-    // });
-
-    // const starListItemArray = this.state.starList.map(starName => {
-    //   return <li key={starName}>{starName}</li>;
-    // });
-
-    // const starListItemArray = this.state.starList.map(starName => <li key={starName}>{starName}</li>);
-
-
-
     return (
       <div className="App">
-        {/* <p>Here's the list of stars</p>
-        <p>The first item in the array is: {this.state.starList[0]}</p> */}
-        <form onSubmit={this.handleSubmit}>
-          New star name: <input value={this.state.newStar.name} onChange={this.handleChangeFor('name')} placeholder="star name" />
-          <br></br>
-          New star radius (in Suns): <input value={this.state.newStar.radius} onChange={this.handleChangeFor('radius')} placeholder="star radius" />
-          <input type="submit" value="submit new star" />
-        </form>
+        <Introduction/>
+        <NewStarForm currentStar={this.state.newStar} handleChangeForChild={this.handleChangeFor} handleSubmitChild={this.handleSubmit}/>
+        {/* here we are adding a prop, newStar */}
+        <NewStar currentStar={this.state.newStar}/>
         <br></br>
-        <ul>
-          {this.state.starList.map(star => 
-          <li key={star.name}>
-          The star {star.name} 
-          is {star.radius} suns in radius.</li>)}
-        </ul>
+        <StarList starList={this.state.starList}/>
+
       </div>
     );
   }
