@@ -1,20 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class NewStarForm extends Component {
-    constructor(props) {
-        super(props);
-    }
+// function components do not have access to 'this' in the same way that class components have it
+// so we pass in props
 
-    render() {
-        return (
-            <form onSubmit={this.props.handleSubmitChild}>
-                New star name: <input value={this.props.currentStar.name} onChange={this.props.handleChangeForChild('name')} placeholder="star name" />
-                <br></br>
-                New star radius (in Suns): <input value={this.props.currentStar.radius} onChange={this.props.handleChangeForChild('radius')} placeholder="star radius" />
-                <input type="submit" value="submit new star" />
-            </form>
-        );
-    }
-}
+// function components are also called "pure" or "dumb" components
 
+
+const NewStarForm = props => (
+    <form onSubmit={props.handleSubmitChild}>
+        New star name: <input value={props.currentStar.name} onChange={props.handleChangeForChild('name')} placeholder="star name" />
+        <br></br>
+        New star radius (in Suns): <input value={props.currentStar.radius} onChange={props.handleChangeForChild('radius')} placeholder="star radius" />
+        <input type="submit" value="submit new star" />
+    </form>
+);
 export default NewStarForm;
